@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guadal Open Source — Ingeniería de datos e IA para la sociedad</title>
+  <meta name="description" content="Plataforma open source de ingeniería de datos e IA al servicio de la sociedad. Medioambiente, educación y más. Todo el código y los datos son libres." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+
+<!-- Ondas fondo -->
+<canvas id="wave-canvas"></canvas>
+
+<!-- Logo parallax fondo -->
+<svg id="bg-logo" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+  <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M180 260 Q230 220 280 260 Q330 300 380 260 Q430 220 480 260" fill="none" stroke="#2E6DA4" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+  <path d="M180 295 Q230 260 280 295 Q330 330 380 295 Q430 260 480 295" fill="none" stroke="#2E6DA4" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="340" cy="168" r="22" fill="#0F6E56"/>
+  <circle cx="340" cy="168" r="10" fill="#1D9E75"/>
+  <path d="M322 168 L340 150 L358 168" fill="none" stroke="#9FE1CB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+  <text font-family="Georgia,serif" font-size="13" fill="#85B7EB" text-anchor="middle" x="340" y="412" letter-spacing="2">GUADAL OPEN SOURCE</text>
+</svg>
+
+<!-- Barra lateral -->
+<aside class="sidebar">
+  <div class="sidebar__line"></div>
+  <span class="sidebar__label">36°N · Málaga</span>
+  <div class="sidebar__line"></div>
+</aside>
+
+<!-- NAVBAR FIJO -->
+<nav class="navbar" id="navbar">
+  <a href="/" class="navbar__brand">
+    <svg width="72" height="72" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+      <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+      <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+      <path d="M180 260 Q230 220 280 260 Q330 300 380 260 Q430 220 480 260" fill="none" stroke="#2E6DA4" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="340" cy="168" r="22" fill="#0F6E56"/>
+      <circle cx="340" cy="168" r="10" fill="#1D9E75"/>
+      <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+    </svg>
+    <span class="navbar__brand-name">
+      Guadal Open Source
+      <small class="navbar__brand-sub">Málaga · Andalucía</small>
+    </span>
+  </a>
+  <div class="navbar__links">
+    <a href="#ambitos"         class="navbar__link">Ámbitos</a>
+    <a href="#proyectos"       class="navbar__link">Proyectos</a>
+    <a href="#sobre-nosotros"  class="navbar__link">Nosotros</a>
+    <a href="#blog"            class="navbar__link">Blog</a>
+    <a href="https://github.com/guadalopensource" target="_blank" rel="noopener" class="navbar__cta">GitHub →</a>
+  </div>
+</nav>
+
+<!-- SITE -->
+<div class="site">
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <p class="hero__eyebrow">Ingeniería de datos · IA · Sociedad</p>
+      <h1 class="hero__title">
+        Datos e inteligencia<br>
+        artificial al servicio<br>
+        de lo que <em>importa</em>
+      </h1>
+      <p class="hero__desc">
+        Guadal Open Source es una plataforma de ingeniería de datos e IA construida para la sociedad. Medioambiente, educación y más ámbitos por venir. Todo el código es abierto. Todos los datos son libres.
+      </p>
+      <div class="hero__actions">
+        <a href="https://github.com/guadalopensource" target="_blank" rel="noopener" class="btn btn--primary">
+          Ver en GitHub
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="mailto:hola@guadalopensource.org" class="btn btn--ghost">
+          Contacto
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <div class="hero__scroll-line"></div>
+      <span class="hero__scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ÁMBITOS -->
+  <section class="section" id="ambitos">
+    <div class="container">
+      <div class="divider reveal" data-delay="0">
+        <span class="divider__label">002 · Ámbitos</span>
+        <div class="divider__line"></div>
+        <span class="divider__label">Código MIT · Datos CC BY 4.0</span>
+      </div>
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">Dónde actuamos</p>
+          <h2 class="section__title">Una plataforma abierta<br>para múltiples dominios</h2>
+        </div>
+        <div class="section__meta">Empezamos por donde<br>el impacto es más urgente</div>
+      </div>
+      <div class="ambitos-grid">
+        <div class="ambito-card reveal" data-delay="1">
+          <div class="ambito-card__num">01 · Activo</div>
+          <svg class="ambito-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <h3 class="ambito-card__title">Medioambiente</h3>
+          <p class="ambito-card__desc">Riesgo hídrico, incendios forestales, vertidos. Datos satelitales e hidrológicos convertidos en herramientas ciudadanas.</p>
+        </div>
+        <div class="ambito-card reveal" data-delay="2">
+          <div class="ambito-card__num">02 · Activo</div>
+          <svg class="ambito-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+          <h3 class="ambito-card__title">Educación</h3>
+          <p class="ambito-card__desc">Alfabetización de datos, formación en IA y herramientas abiertas. Cursos y recursos para que el conocimiento técnico llegue a todos.</p>
+        </div>
+        <div class="ambito-card ambito-card--more reveal" data-delay="3">
+          <div class="ambito-card__num">03–∞ · Próximamente</div>
+          <svg class="ambito-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--muted)">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+          </svg>
+          <h3 class="ambito-card__title">Salud · Energía<br>y más por definir</h3>
+          <p class="ambito-card__desc">La plataforma está diseñada para crecer. Cualquier dominio donde los datos abiertos puedan generar impacto social real tiene cabida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section class="section section--dark" id="proyectos">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">003 · Proyectos</p>
+          <h2 class="section__title">Lo que estamos<br>construyendo ahora</h2>
+        </div>
+        <div class="section__meta">Nodo Málaga<br>Andalucía, España</div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal" data-delay="1">
+          <div class="project-card__id">P2 <span class="project-card__status status--active">En curso</span></div>
+          <h3 class="project-card__title">Dashboard Riesgo Hídrico Málaga</h3>
+          <p class="project-card__desc">Mapa interactivo de zonas de inundación con datos SAIH en tiempo real. 1.035 ARPSIs procesadas. Períodos de retorno 10, 100 y 500 años.</p>
+        </div>
+        <div class="project-card reveal" data-delay="2">
+          <div class="project-card__id">P6 <span class="project-card__status status--active">En curso</span></div>
+          <h3 class="project-card__title">Observatorio Incendios Forestales</h3>
+          <p class="project-card__desc">Detección y seguimiento con Sentinel-2, MTG FRP y NASA FIRMS. Zonas piloto: Sierra de las Nieves y Montes de Málaga.</p>
+        </div>
+        <div class="project-card reveal" data-delay="3">
+          <div class="project-card__id">P1 <span class="project-card__status status--planned">Planificado</span></div>
+          <h3 class="project-card__title">Detección Vertidos con IA</h3>
+          <p class="project-card__desc">Identificación automática de vertidos ilegales en ríos mediante análisis de imágenes satelitales Sentinel-2.</p>
+        </div>
+        <div class="project-card reveal" data-delay="1">
+          <div class="project-card__id">P3 <span class="project-card__status status--planned">Planificado</span></div>
+          <h3 class="project-card__title">Análisis Post-DANA</h3>
+          <p class="project-card__desc">Evaluación de daños y modelado de cuencas tras episodios de lluvias extremas. Respuesta en 48h.</p>
+        </div>
+        <div class="project-card reveal" data-delay="2">
+          <div class="project-card__id">P5 <span class="project-card__status status--planned">Planificado</span></div>
+          <h3 class="project-card__title">Atlas Vulnerabilidad Hídrica</h3>
+          <p class="project-card__desc">Cartografía de vulnerabilidad hídrica en los 103 municipios del interior de Málaga.</p>
+        </div>
+        <div class="project-card reveal" data-delay="3">
+          <div class="project-card__id">P4 <span class="project-card__status status--research">Investigación</span></div>
+          <h3 class="project-card__title">Gemelo Digital de Cuenca</h3>
+          <p class="project-card__desc">Primer modelo hidrológico abierto para una cuenca del sur de España. Basado en datos SNCZI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="section" id="sobre-nosotros">
+    <div class="container">
+      <div class="divider reveal" data-delay="0">
+        <span class="divider__label">004 · Sobre nosotros</span>
+        <div class="divider__line"></div>
+        <span class="divider__label">Asociación en constitución</span>
+      </div>
+      <div class="about" style="margin-top:4rem;">
+        <div class="about__sidebar reveal" data-delay="0">
+          <p class="about__index">Guadal Open Source</p>
+          <h2 class="about__title">Tecnología<br>al servicio del <em>bien común</em></h2>
+          <div class="nodos">
+            <div class="nodo"><div class="nodo__dot"></div>Nodo Málaga — Datos ambientales</div>
+            <div class="nodo"><div class="nodo__dot"></div>Nodo Viena — Energía y educación</div>
+          </div>
+        </div>
+        <div class="about__content reveal" data-delay="2">
+          <p class="about__lead">Aplicamos ingeniería de datos e inteligencia artificial a los problemas que más importan, donde los datos abiertos pueden cambiar algo real.</p>
+          <p class="about__body">Guadal Open Source es una plataforma de código abierto con estructura distribuida. Cada nodo opera de forma autónoma en su dominio de especialidad, compartiendo infraestructura, valores y metodología. No somos una startup ni una consultora. Somos una asociación ciudadana que cree que el conocimiento técnico es un bien común.</p>
+          <p class="about__body">Construimos herramientas que los ciudadanos, investigadores y administraciones puedan usar, auditar y mejorar. Todo lo que producimos — código, datos y documentación — se publica bajo licencias libres.</p>
+          <div class="valores">
+            <div class="valor reveal" data-delay="1"><h4 class="valor__title">Código abierto</h4><p class="valor__desc">Todo el software bajo licencia MIT. Sin excepciones.</p></div>
+            <div class="valor reveal" data-delay="2"><h4 class="valor__title">Datos libres</h4><p class="valor__desc">Todos los datasets procesados bajo CC BY 4.0.</p></div>
+            <div class="valor reveal" data-delay="3"><h4 class="valor__title">Gobernanza colectiva</h4><p class="valor__desc">Decisiones horizontales. Cada nodo autónomo.</p></div>
+            <div class="valor reveal" data-delay="4"><h4 class="valor__title">Impacto real</h4><p class="valor__desc">Herramientas para personas, no solo para instituciones.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="section section--dark" id="blog">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">005 · Blog técnico</p>
+          <h2 class="section__title">Notas de campo</h2>
+        </div>
+        <span class="post__link" style="opacity:.35;cursor:default;">Ver todos →</span>
+      </div>
+      <div class="blog__featured reveal" data-delay="1">
+        <div>
+          <p class="post__eyebrow">Hidrología · P2 · Medioambiente</p>
+          <h3 class="post__title">ARPSIs de Málaga: cartografía de riesgo de inundación con datos abiertos</h3>
+          <p class="post__excerpt">Las Áreas de Riesgo Potencial Significativo de Inundación definen los tramos fluviales donde la probabilidad de inundación supera umbrales críticos según la Directiva 2007/60/CE. Hemos procesado 1.035 registros del SNCZI para construir la base del dashboard de riesgo hídrico.</p>
+          <div class="post__meta">
+            <span>Mayo 2026</span>
+            <span>Semana 2 · P2-F1</span>
+            <span>Nodo Málaga</span>
+          </div>
+          <span class="post__link" style="opacity:.35;cursor:default;">Artículo próximamente</span>
+        </div>
+        <div class="post__visual">
+          <canvas id="mini-map"></canvas>
+          <span class="post__visual-label">Provincia de Málaga</span>
+          <span class="post__visual-sub">1.035 ARPSIs · EPSG:25830</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <strong>Guadal Open Source</strong><br>
+        Málaga, Andalucía, España<br>
+        Asociación en proceso de constitución<br>
+        MIT · CC BY 4.0
+      </div>
+      <div class="footer__center">
+        <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+          <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+          <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+          <circle cx="340" cy="168" r="16" fill="#0F6E56"/>
+          <circle cx="340" cy="168" r="7" fill="#1D9E75"/>
+          <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+        </svg>
+      </div>
+      <div class="footer__links">
+        <a href="https://github.com/guadalopensource" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:hola@guadalopensource.org">Email</a>
+        <a href="#sobre-nosotros">Licencia</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
