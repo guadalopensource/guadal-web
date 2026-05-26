@@ -1,22 +1,6 @@
 'use strict';
 
-// ── CURSOR ──────────────────────────────────
-const cursor = document.getElementById('cursor');
-if (cursor) {
-  let mx = 0, my = 0, cx = 0, cy = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function animateCursor() {
-    cx += (mx - cx) * 0.12;
-    cy += (my - cy) * 0.12;
-    cursor.style.left = cx + 'px';
-    cursor.style.top  = cy + 'px';
-    requestAnimationFrame(animateCursor);
-  })();
-  document.querySelectorAll('a, button, .project-card, .ambito-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-  });
-}
+// cursor del sistema — sin cursor personalizado
 
 // ── NAVBAR SCROLL ───────────────────────────
 const navbar = document.getElementById('navbar');

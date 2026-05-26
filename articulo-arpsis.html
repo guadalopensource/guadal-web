@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARPSIs de Málaga — Guadal Open Source</title>
+  <meta name="description" content="Cartografía de riesgo de inundación con datos abiertos. 1.035 ARPSIs procesadas para la provincia de Málaga. Directiva 2007/60/CE, SNCZI, períodos de retorno." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos específicos del artículo */
+    .article {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .article__header {
+      padding: 8rem 0 4rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 4rem;
+    }
+
+    .article__back {
+      font-family: var(--font-mono, 'DM Mono', monospace);
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 3rem;
+      transition: color .2s;
+    }
+    .article__back:hover { color: var(--teal-light); }
+
+    .article__eyebrow {
+      font-family: var(--font-mono, 'DM Mono', monospace);
+      font-size: .58rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .article__eyebrow span {
+      color: var(--muted);
+    }
+
+    .article__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+
+    .article__lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      opacity: .85;
+    }
+
+    .article__meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-family: 'DM Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .article__body {
+      padding-bottom: 6rem;
+    }
+
+    .article__body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+      margin: 3.5rem 0 1.2rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .article__body h3 {
+      font-family: 'DM Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin: 2.5rem 0 1rem;
+    }
+
+    .article__body p {
+      font-size: .95rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .article__body p strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .article__body ul {
+      margin: 1rem 0 1.5rem 1.5rem;
+      list-style: none;
+    }
+
+    .article__body ul li {
+      font-size: .9rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: .5rem;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .article__body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: .8rem;
+    }
+
+    /* Datos destacados */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+      margin: 2.5rem 0;
+    }
+
+    .data-item {
+      padding: 1.8rem 1.5rem;
+      border-right: 1px solid var(--rule);
+      text-align: center;
+    }
+
+    .data-item:last-child { border-right: none; }
+
+    .data-item__number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: .4rem;
+      letter-spacing: -.02em;
+    }
+
+    .data-item__number em {
+      font-style: normal;
+      color: var(--teal-light);
+      font-size: 1.5rem;
+    }
+
+    .data-item__label {
+      font-family: 'DM Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Cita destacada */
+    .pullquote {
+      border-left: 3px solid var(--teal);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      background: rgba(29,158,117,.04);
+    }
+
+    .pullquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cream) !important;
+      line-height: 1.65;
+      margin-bottom: .5rem !important;
+    }
+
+    .pullquote cite {
+      font-family: 'DM Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Tabla de períodos de retorno */
+    .retorno-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: .82rem;
+    }
+
+    .retorno-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: rgba(15,35,64,.6);
+      padding: .9rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--teal);
+    }
+
+    .retorno-table td {
+      padding: .8rem 1rem;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      line-height: 1.5;
+    }
+
+    .retorno-table tr:hover td {
+      background: rgba(29,158,117,.04);
+      color: var(--cream);
+    }
+
+    /* Nota técnica */
+    .tech-note {
+      background: rgba(46,109,164,.06);
+      border: 1px solid var(--rule);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .tech-note strong {
+      color: var(--sky);
+      font-weight: 400;
+    }
+
+    /* Navegación artículo */
+    .article__nav {
+      border-top: 1px solid var(--rule);
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .article__nav-back {
+      font-family: 'DM Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: color .2s;
+    }
+    .article__nav-back:hover { color: var(--teal-light); }
+
+    .article__tag {
+      font-family: 'DM Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      border: 1px solid rgba(93,202,165,.3);
+      padding: .3rem .7rem;
+    }
+
+    @media (max-width: 600px) {
+      .article { padding: 0 1.5rem; }
+      .data-grid { grid-template-columns: 1fr; }
+      .data-item { border-right: none; border-bottom: 1px solid var(--rule); }
+      .data-item:last-child { border-bottom: none; }
+      .article__header { padding: 7rem 0 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<canvas id="wave-canvas"></canvas>
+
+<svg id="bg-logo" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+  <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M180 260 Q230 220 280 260 Q330 300 380 260 Q430 220 480 260" fill="none" stroke="#2E6DA4" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+  <path d="M180 295 Q230 260 280 295 Q330 330 380 295 Q430 260 480 295" fill="none" stroke="#2E6DA4" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="340" cy="168" r="22" fill="#0F6E56"/>
+  <circle cx="340" cy="168" r="10" fill="#1D9E75"/>
+  <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+  <text font-family="Georgia,serif" font-size="13" fill="#85B7EB" text-anchor="middle" x="340" y="412" letter-spacing="2">GUADAL OPEN SOURCE</text>
+</svg>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="/" class="navbar__brand">
+    <svg width="52" height="52" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+      <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+      <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+      <path d="M180 260 Q230 220 280 260 Q330 300 380 260 Q430 220 480 260" fill="none" stroke="#2E6DA4" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="340" cy="168" r="22" fill="#0F6E56"/>
+      <circle cx="340" cy="168" r="10" fill="#1D9E75"/>
+      <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+    </svg>
+    <span class="navbar__brand-name">
+      Guadal Open Source
+      <small class="navbar__brand-sub">Málaga · Andalucía</small>
+    </span>
+  </a>
+  <div class="navbar__links">
+    <a href="/#ambitos"        class="navbar__link">Ámbitos</a>
+    <a href="/#proyectos"      class="navbar__link">Proyectos</a>
+    <a href="/#sobre-nosotros" class="navbar__link">Nosotros</a>
+    <a href="/#blog"           class="navbar__link">Publicaciones</a>
+    <a href="https://github.com/guadalopensource" target="_blank" rel="noopener" class="navbar__cta">GitHub →</a>
+  </div>
+</nav>
+
+<!-- ARTÍCULO -->
+<div class="site">
+  <article class="article">
+
+    <header class="article__header">
+      <a href="/" class="article__back">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+        Volver a publicaciones
+      </a>
+
+      <div class="article__eyebrow">
+        <span>Hidrología</span>
+        <span>·</span>
+        <span>P2 — Dashboard Riesgo Hídrico</span>
+        <span>·</span>
+        <span>Medioambiente</span>
+      </div>
+
+      <h1 class="article__title">
+        ARPSIs de Málaga: cartografía de riesgo de inundación con datos abiertos
+      </h1>
+
+      <p class="article__lead">
+        La provincia de Málaga concentra 107 Áreas de Riesgo Potencial Significativo de Inundación. Hemos procesado los 1.035 registros del SNCZI para construir la base de datos del dashboard de riesgo hídrico — el primero abierto y actualizable de la región.
+      </p>
+
+      <div class="article__meta">
+        <span>Mayo 2026</span>
+        <span>Nodo Málaga</span>
+        <span>P2 · Semana 2 · F1</span>
+        <span>Guadal Open Source</span>
+      </div>
+    </header>
+
+    <div class="article__body">
+
+      <!-- DATOS CLAVE -->
+      <div class="data-grid">
+        <div class="data-item">
+          <div class="data-item__number">1.035</div>
+          <div class="data-item__label">ARPSIs procesadas</div>
+        </div>
+        <div class="data-item">
+          <div class="data-item__number">107</div>
+          <div class="data-item__label">Zonas de riesgo significativo</div>
+        </div>
+        <div class="data-item">
+          <div class="data-item__number">3<em>T</em></div>
+          <div class="data-item__label">Períodos de retorno (10/100/500 años)</div>
+        </div>
+      </div>
+
+      <h2>Qué son las ARPSIs y por qué importan</h2>
+
+      <p>Las <strong>Áreas de Riesgo Potencial Significativo de Inundación (ARPSIs)</strong> son los tramos fluviales donde la probabilidad de inundación supera umbrales críticos definidos por la Directiva Europea 2007/60/CE, transpuesta al ordenamiento español mediante el Real Decreto 903/2010. Son, en esencia, el mapa oficial del riesgo hídrico en España.</p>
+
+      <p>En la provincia de Málaga, la investigación académica liderada por el Departamento de Geografía de la Universidad de Málaga identifica tres factores estructurales que explican por qué la región concentra una densidad tan alta de zonas de riesgo: su posición en la confluencia de masas de aire mediterráneo y atlántico, un modelo de ocupación del territorio que ha urbanizado históricamente las llanuras de inundación costeras, y un comportamiento hidrogeológico del suelo con baja infiltración que genera rápidas crecidas.</p>
+
+      <div class="pullquote">
+        <p>"Las inundaciones son episodios previsibles y recurrentes, no eventos excepcionales. La comunidad científica lleva más de dos décadas identificando las áreas de mayor vulnerabilidad."</p>
+        <cite>Estado del arte sobre inundaciones e incendios forestales en la provincia de Málaga · UMA, 2026</cite>
+      </div>
+
+      <p>Los episodios de <strong>noviembre de 2024</strong> — la DANA que afectó gravemente a Málaga capital y la Axarquía — confirmaron que las medidas adoptadas son insuficientes y que la expansión urbana sobre zonas inundables continúa siendo un vector crítico de riesgo.</p>
+
+      <h2>Fuente de datos: el SNCZI</h2>
+
+      <p>El <strong>Sistema Nacional de Cartografía de Zonas Inundables (SNCZI)</strong> del Ministerio para la Transición Ecológica (MITECO) es la fuente oficial de datos de inundabilidad en España. Ofrece mapas de peligrosidad y riesgo para tres períodos de retorno estándar, basados en modelización hidráulica de las principales cuencas hidrográficas.</p>
+
+      <table class="retorno-table">
+        <thead>
+          <tr>
+            <th>Período de retorno</th>
+            <th>Probabilidad anual</th>
+            <th>Interpretación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>T-10 años</strong></td>
+            <td>10% por año</td>
+            <td>Alta probabilidad — inundaciones frecuentes</td>
+          </tr>
+          <tr>
+            <td><strong>T-100 años</strong></td>
+            <td>1% por año</td>
+            <td>Probabilidad media — referencia normativa principal</td>
+          </tr>
+          <tr>
+            <td><strong>T-500 años</strong></td>
+            <td>0,2% por año</td>
+            <td>Baja probabilidad — escenario extremo</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Un dato que ilustra la gravedad de la situación: las inundaciones de febrero-marzo de 2020 en la cuenca del río Campanillas <strong>superaron los niveles esperados para períodos de retorno de 500 años</strong>, cuestionando la validez de las series históricas empleadas en cálculos hidrológicos bajo escenarios de cambio climático.</p>
+
+      <h2>El río Guadalhorce y la ARPSI de referencia</h2>
+
+      <p>El Guadalhorce es el principal sistema fluvial de la provincia. Su cuenca baja está clasificada como <strong>ARPSI ES060_ARPS_0048</strong>, una de las más estudiadas de Andalucía. El estudio del CEDEX (2018) analizó la capacidad hidráulica del encauzamiento para láminas de agua de 10, 100 y 500 años de período de retorno, sentando las bases técnicas para los proyectos de mejora del MITECO.</p>
+
+      <p>La cuenca del Campanillas, afluente del Guadalhorce, ha sido objeto de análisis específicos que proponen metodologías cartográficas para evaluar el aislamiento potencial de la población ante inundaciones — un problema crítico para los municipios de su entorno.</p>
+
+      <h2>Qué hemos construido</h2>
+
+      <p>En la Fase 1 del Proyecto P2, hemos descargado y procesado los <strong>1.035 registros de ARPSIs</strong> disponibles en el SNCZI para la provincia de Málaga, georeferenciados en el sistema de coordenadas <strong>EPSG:25830</strong> (UTM zona 30N, el estándar para la Península Ibérica).</p>
+
+      <div class="tech-note">
+        <strong>Datos técnicos del dataset</strong><br>
+        Archivo: <strong>arpsis_malaga.geojson</strong><br>
+        Registros: <strong>1.035 ARPSIs</strong><br>
+        CRS: <strong>EPSG:25830</strong> (UTM zona 30N)<br>
+        Fuente: <strong>SNCZI — MITECO</strong><br>
+        Script: <strong>descarga_arpsis.py</strong> — filtra y descarga ARPSIs de Málaga<br>
+        Licencia datos: <strong>CC BY 4.0</strong>
+      </div>
+
+      <p>El campo <strong>MECAN_INU</strong> (mecanismo de inundación) presenta actualmente tres variantes de escritura para el mismo valor — normalización pendiente en la próxima fase del proyecto.</p>
+
+      <h3>Próximos pasos — Fase 2</h3>
+
+      <ul>
+        <li>Añadir las capas de períodos de retorno (T-10, T-100, T-500) al mapa interactivo</li>
+        <li>Integrar datos SAIH en tiempo real para alertas de nivel de embalses y ríos</li>
+        <li>Normalizar el campo MECAN_INU en el GeoJSON</li>
+        <li>Publicar el dataset en el lago de datos de Hetzner Object Storage bajo CC BY 4.0</li>
+      </ul>
+
+      <h2>Marco normativo y déficit institucional</h2>
+
+      <p>La investigación de Jordá Borrell et al. (2023), publicada en Heliyon, constata graves deficiencias en la aplicación del marco normativo a los Planes Generales de Ordenación Urbana de catorce municipios malagueños. El estudio revela <strong>falta de coherencia entre los marcos regulatorios europeo y nacional y las prácticas de planificación municipal</strong>, evidenciando una persistente vulnerabilidad hidrológica institucional.</p>
+
+      <p>Esta brecha entre el conocimiento disponible y su aplicación práctica es precisamente el problema que herramientas como el dashboard de riesgo hídrico de Guadal pretenden reducir: datos abiertos, accesibles y actualizables para que ciudadanos, investigadores y administraciones puedan tomar decisiones basadas en evidencia real.</p>
+
+      <h2>Código y datos</h2>
+
+      <p>Todo el código del proyecto está disponible en GitHub bajo licencia MIT. Los datos procesados están publicados bajo CC BY 4.0 — libres para usar, modificar y redistribuir con atribución.</p>
+
+      <div class="tech-note">
+        <strong>Repositorio:</strong> github.com/guadalopensource/guadal-data-pipelines<br>
+        <strong>Script de descarga:</strong> descarga_arpsis.py<br>
+        <strong>Script de visualización:</strong> mapa_arpsis.py (geopandas + contextily)<br>
+        <strong>Licencia código:</strong> MIT &nbsp;·&nbsp; <strong>Licencia datos:</strong> CC BY 4.0
+      </div>
+
+    </div>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="article__nav">
+      <a href="/" class="article__nav-back">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+        Volver a publicaciones
+      </a>
+      <div style="display:flex; gap:.8rem;">
+        <span class="article__tag">Hidrología</span>
+        <span class="article__tag">P2</span>
+        <span class="article__tag">Datos abiertos</span>
+      </div>
+    </nav>
+
+  </article>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
