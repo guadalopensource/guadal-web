@@ -103,3 +103,24 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── LIGHTBOX DIAGRAMA ────────────────────────
+const diagramWrap = document.getElementById('diagram-wrap');
+const lightbox    = document.getElementById('lightbox');
+const lightboxClose = document.getElementById('lightbox-close');
+
+if (diagramWrap && lightbox) {
+  diagramWrap.addEventListener('click', () => lightbox.classList.add('active'));
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', e => {
+      e.stopPropagation();
+      lightbox.classList.remove('active');
+    });
+  }
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.classList.remove('active');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.classList.remove('active');
+  });
+}

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosotros — Guadal Open Source</title>
+  <meta name="description" content="Quiénes somos, qué nos mueve y cómo trabajamos en Guadal Open Source. Ciencia ciudadana, datos libres y tecnología cooperativa al servicio del bien común." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&family=Instrument+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+    /* ── HERO ── */
+    .nos-hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding-top: 96px;
+      position: relative;
+    }
+    .nos-hero__body {
+      display: flex;
+      align-items: center;
+    }
+    .nos-hero__inner {
+      max-width: 820px;
+    }
+    .nos-hero__eyebrow {
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      opacity: 0;
+      animation: fadeUp .8s .1s var(--ease) forwards;
+    }
+    .nos-hero__eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--teal-light);
+      opacity: .4;
+    }
+    .nos-hero__title {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 7vw, 7.5rem);
+      font-weight: 300;
+      line-height: 1.04;
+      letter-spacing: -.025em;
+      color: var(--cream);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp .9s .2s var(--ease) forwards;
+    }
+    .nos-hero__title em {
+      font-style: italic;
+      color: var(--teal-light);
+    }
+    .nos-hero__statement {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeUp .9s .36s var(--ease) forwards;
+    }
+    .nos-hero__footer {
+      padding: 2.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      border-top: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeIn 1s .8s forwards;
+    }
+    .nos-hero__stat {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+    .nos-hero__stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .nos-hero__stat-label {
+      font-family: var(--mono);
+      font-size: .55rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nos-hero__stat-sep {
+      width: 1px;
+      height: 40px;
+      background: var(--rule);
+    }
+
+    /* ── PROPÓSITO ── */
+    .proposito {
+      padding: 8rem 0;
+    }
+    .proposito__grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .proposito__label {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .proposito__side-title {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+      letter-spacing: -.015em;
+      position: sticky;
+      top: 7rem;
+    }
+    .proposito__side-title em {
+      font-style: italic;
+      color: var(--teal-light);
+    }
+    .proposito__text {
+      font-size: 1.05rem;
+      line-height: 1.92;
+      color: var(--muted);
+    }
+    .proposito__text + .proposito__text {
+      margin-top: 1.4rem;
+    }
+    .proposito__text strong {
+      color: var(--cream);
+      font-weight: 400;
+    }
+    .proposito__pull {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--cream);
+      border-left: 2px solid var(--teal);
+      padding-left: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    /* ── MVV ROW ── */
+    .mvv {
+      padding: 7rem 0;
+      background: var(--ink-soft);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .mvv__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+    .mvv__item {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--rule);
+      position: relative;
+    }
+    .mvv__item:last-child { border-right: none; }
+    .mvv__item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--teal-light);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .5s var(--ease);
+    }
+    .mvv__item.visible::before { transform: scaleX(1); }
+    .mvv__tag {
+      font-family: var(--mono);
+      font-size: .56rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 1.5rem;
+    }
+    .mvv__heading {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+      margin-bottom: 1.2rem;
+    }
+    .mvv__heading em { font-style: italic; }
+    .mvv__desc {
+      font-size: .9rem;
+      line-height: 1.82;
+      color: var(--muted);
+    }
+
+    /* ── VALORES ── */
+    .valores-section {
+      padding: 8rem 0;
+    }
+    .valores-section__intro {
+      max-width: 560px;
+      margin-bottom: 5rem;
+    }
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+    .valor-item {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+    }
+    .valor-item:nth-child(3n) { border-right: none; }
+    .valor-item:nth-last-child(-n+3) { border-bottom: none; }
+    .valor-item:hover { background: rgba(242,237,228,.03); }
+    .valor-item__num {
+      font-family: var(--mono);
+      font-size: .52rem;
+      letter-spacing: .2em;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .valor-item__icon {
+      width: 28px; height: 28px;
+      color: var(--teal-light);
+      margin-bottom: 1rem;
+    }
+    .valor-item__title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: .7rem;
+      letter-spacing: -.01em;
+    }
+    .valor-item__desc {
+      font-size: .88rem;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+
+    /* ── CÓMO TRABAJAMOS ── */
+    .como {
+      padding: 8rem 0;
+      background: var(--ink-soft);
+      border-top: 1px solid var(--rule);
+    }
+    .como__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .como__left { }
+    .como__title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.12;
+      letter-spacing: -.015em;
+      margin-bottom: 2rem;
+    }
+    .como__title em { font-style: italic; color: var(--teal-light); }
+    .como__body {
+      font-size: .96rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+    }
+    .como__body strong { color: var(--cream); font-weight: 400; }
+    .como__right { }
+    .como__principles {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+    .como__principle {
+      padding: 1.6rem 1.8rem;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: background .25s;
+    }
+    .como__principle:last-child { border-bottom: none; }
+    .como__principle:hover { background: rgba(242,237,228,.03); }
+    .como__principle-mark {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .15em;
+      color: var(--teal-light);
+      padding-top: .15rem;
+    }
+    .como__principle-title {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: .5rem;
+    }
+    .como__principle-desc {
+      font-size: .86rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    /* ── LICENCIAS ── */
+    .licencias {
+      border-top: 1px solid var(--rule);
+      padding: 3rem 0;
+    }
+    .licencias__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .licencias__text {
+      font-family: var(--mono);
+      font-size: .58rem;
+      color: var(--muted);
+      letter-spacing: .1em;
+      line-height: 1.9;
+    }
+    .licencias__text strong { color: var(--sky); font-weight: 400; }
+    .licencias__badges {
+      display: flex;
+      gap: 1rem;
+    }
+    .licencias__badge {
+      font-family: var(--mono);
+      font-size: .56rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      border: 1px solid rgba(93,202,165,.3);
+      padding: .4rem 1rem;
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+      transition: color .2s;
+      cursor: pointer;
+    }
+    .back-link:hover { color: var(--cream); }
+
+    /* ── RESPONSIVE ── */
+
+    @media (max-width: 900px) {
+      .proposito__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .proposito__side-title { position: static; font-size: 2rem; }
+      .mvv__grid { grid-template-columns: 1fr; }
+      .mvv__item { border-right: none; border-bottom: 1px solid var(--rule); }
+      .mvv__item:last-child { border-bottom: none; }
+      .valores-grid { grid-template-columns: 1fr 1fr; }
+      .valor-item:nth-child(3n) { border-right: 1px solid var(--rule); }
+      .valor-item:nth-child(2n) { border-right: none; }
+      .como__grid { grid-template-columns: 1fr; gap: 3rem; }
+      .nos-hero__footer { flex-wrap: wrap; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .valores-grid { grid-template-columns: 1fr; }
+      .valor-item { border-right: none !important; }
+      .licencias__inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body class="page-interior">
+
+<canvas id="wave-canvas"></canvas>
+<svg id="bg-logo" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+  <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+  <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M180 260 Q230 220 280 260 Q330 300 380 260 Q430 220 480 260" fill="none" stroke="#2E6DA4" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+  <path d="M180 295 Q230 260 280 295 Q330 330 380 295 Q430 260 480 295" fill="none" stroke="#2E6DA4" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+  <circle cx="340" cy="168" r="22" fill="#0F6E56"/>
+  <circle cx="340" cy="168" r="10" fill="#1D9E75"/>
+  <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+</svg>
+
+<aside class="sidebar">
+  <div class="sidebar__line"></div>
+  <span class="sidebar__label">36°N · Málaga</span>
+  <div class="sidebar__line"></div>
+</aside>
+
+<nav class="navbar" id="navbar">
+  <a href="/" class="navbar__brand">
+    <svg width="72" height="72" viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+      <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+      <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+      <circle cx="340" cy="168" r="22" fill="#0F6E56"/>
+      <circle cx="340" cy="168" r="10" fill="#1D9E75"/>
+      <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+    </svg>
+    <span class="navbar__brand-name">
+      Guadal Open Source
+      <small class="navbar__brand-sub">Málaga · Andalucía</small>
+    </span>
+  </a>
+  <div class="navbar__links">
+    <a href="/#ambitos"                class="navbar__link">Ámbitos</a>
+    <a href="/#proyectos"              class="navbar__link">Proyectos</a>
+    <a href="/nosotros.html"           class="navbar__link">Nosotros</a>
+    <a href="/#blog"                   class="navbar__link">Publicaciones</a>
+    <a href="/arquitectura-datos.html" class="navbar__link">Arquitectura</a>
+    <a href="https://github.com/guadalopensource" target="_blank" rel="noopener" class="navbar__cta">GitHub →</a>
+  </div>
+</nav>
+
+<div class="site">
+
+  <!-- HERO -->
+  <section class="nos-hero">
+    <div class="nos-hero__body container">
+      <div class="nos-hero__inner">
+        <a href="/" class="back-link">← Inicio</a>
+        <p class="nos-hero__eyebrow">Quiénes somos</p>
+        <h1 class="nos-hero__title">
+          Conocimiento técnico<br>
+          como <em>bien común</em>
+        </h1>
+        <p class="nos-hero__statement">
+          Somos una plataforma ciudadana de ingeniería de datos e inteligencia artificial. Construimos herramientas abiertas para problemas reales, con la convicción de que la tecnología producida colectivamente sirve mejor a la sociedad que la desarrollada para el beneficio privado.
+        </p>
+      </div>
+    </div>
+    <div class="nos-hero__footer container">
+      <div class="nos-hero__stat">
+        <span class="nos-hero__stat-num">MIT</span>
+        <span class="nos-hero__stat-label">Licencia código</span>
+      </div>
+      <div class="nos-hero__stat-sep"></div>
+      <div class="nos-hero__stat">
+        <span class="nos-hero__stat-num">CC BY 4.0</span>
+        <span class="nos-hero__stat-label">Licencia datos</span>
+      </div>
+      <div class="nos-hero__stat-sep"></div>
+      <div class="nos-hero__stat">
+        <span class="nos-hero__stat-num">2026</span>
+        <span class="nos-hero__stat-label">Nodo Málaga activo</span>
+      </div>
+      <div class="nos-hero__stat-sep"></div>
+      <div class="nos-hero__stat">
+        <span class="nos-hero__stat-num">100%</span>
+        <span class="nos-hero__stat-label">Open source</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPÓSITO -->
+  <section class="proposito reveal">
+    <div class="container">
+      <div class="proposito__grid">
+        <div>
+          <p class="proposito__label">Propósito</p>
+          <h2 class="proposito__side-title">Por qué<br>existimos</h2>
+        </div>
+        <div>
+          <p class="proposito__text">
+            Vivimos en un momento en que la capacidad de producir, analizar y actuar sobre datos determina quién puede tomar decisiones sobre su entorno. Esa capacidad está concentrada en un número reducido de organizaciones, la mayoría privadas, con objetivos que no coinciden con el interés ciudadano.
+          </p>
+          <blockquote class="proposito__pull">
+            Los datos sobre nuestros ríos, nuestros bosques, nuestra energía y nuestro territorio son datos públicos. Las herramientas para comprenderlos deberían serlo también.
+          </blockquote>
+          <p class="proposito__text">
+            Guadal Open Source nace para cerrar esa brecha. Aplicamos ingeniería de datos e inteligencia artificial a los problemas donde el impacto ciudadano es más urgente — medioambiente, energía, educación — y publicamos todo lo que producimos bajo licencias libres: el código, los datos y la metodología.
+          </p>
+          <p class="proposito__text">
+            No somos una startup ni una consultora. Somos una <strong>asociación ciudadana</strong> que cree que el conocimiento técnico avanzado, cuando se construye de forma cooperativa y se comparte sin restricciones, se convierte en infraestructura pública para la toma de decisiones colectivas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN · VISIÓN · VALORES CORE -->
+  <section class="mvv">
+    <div class="container">
+      <div class="mvv__grid">
+        <div class="mvv__item reveal" data-delay="0">
+          <p class="mvv__tag">Misión</p>
+          <h2 class="mvv__heading">Convertir datos públicos en <em>herramientas ciudadanas</em></h2>
+          <p class="mvv__desc">Diseñamos y mantenemos pipelines de datos, modelos de inteligencia artificial y dashboards interactivos sobre problemas ambientales, energéticos y sociales. Todo bajo licencias abiertas, con metodología documentada y datos auditables por cualquier persona.</p>
+        </div>
+        <div class="mvv__item reveal" data-delay="1">
+          <p class="mvv__tag">Visión</p>
+          <h2 class="mvv__heading">Una red de <em>ciencia ciudadana</em> distribuida</h2>
+          <p class="mvv__desc">Imaginamos un ecosistema de nodos autónomos — ciudades, regiones, comunidades — que comparten infraestructura técnica, datos y metodología para estudiar y actuar sobre su entorno. Cada nodo opera con autonomía plena; todos contribuyen a un bien común compartido.</p>
+        </div>
+        <div class="mvv__item reveal" data-delay="2">
+          <p class="mvv__tag">Compromiso</p>
+          <h2 class="mvv__heading">Todo lo que producimos es <em>de todos</em></h2>
+          <p class="mvv__desc">El código se publica bajo MIT. Los datos procesados bajo CC BY 4.0. La documentación es pública. No hay conocimiento propietario ni resultados reservados. Lo que construimos pertenece a quien quiera usarlo, mejorarlo o bifurcarlo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="valores-section">
+    <div class="container">
+      <div class="valores-section__intro reveal">
+        <p class="section__eyebrow">Valores</p>
+        <h2 class="section__title">Lo que guía<br>cada decisión</h2>
+      </div>
+      <div class="valores-grid">
+
+        <div class="valor-item reveal" data-delay="0">
+          <div class="valor-item__num">01</div>
+          <svg class="valor-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <h3 class="valor-item__title">Ciencia ciudadana</h3>
+          <p class="valor-item__desc">El conocimiento científico no es patrimonio exclusivo de las instituciones académicas o corporativas. Cualquier persona puede contribuir, verificar y beneficiarse de él. Diseñamos para esa participación.</p>
+        </div>
+
+        <div class="valor-item reveal" data-delay="1">
+          <div class="valor-item__num">02</div>
+          <svg class="valor-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+          </svg>
+          <h3 class="valor-item__title">Transparencia radical</h3>
+          <p class="valor-item__desc">Cada transformación de datos está documentada en código abierto. Cada resultado es auditable desde el dato crudo hasta el producto final. No hay cajas negras.</p>
+        </div>
+
+        <div class="valor-item reveal" data-delay="2">
+          <div class="valor-item__num">03</div>
+          <svg class="valor-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <h3 class="valor-item__title">Soberanía tecnológica</h3>
+          <p class="valor-item__desc">Usamos y promovemos software libre. Nuestra infraestructura reside en servidores europeos. Los datos no salen de la UE. Las comunidades que usamos como referencia conservan el control sobre sus datos.</p>
+        </div>
+
+        <div class="valor-item reveal" data-delay="0">
+          <div class="valor-item__num">04</div>
+          <svg class="valor-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <h3 class="valor-item__title">Impacto local</h3>
+          <p class="valor-item__desc">Empezamos por problemas concretos y territorios específicos. Los datos sobre inundaciones en Málaga, los incendios en Sierra Bermeja o las pérdidas en la red eléctrica española tienen consecuencias reales para personas reales.</p>
+        </div>
+
+        <div class="valor-item reveal" data-delay="1">
+          <div class="valor-item__num">05</div>
+          <svg class="valor-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          <h3 class="valor-item__title">Cooperativismo técnico</h3>
+          <p class="valor-item__desc">Construimos en horizontal. Las decisiones se toman colectivamente. Cada nodo es autónomo pero comparte infraestructura, metodología y valores con el resto. La cooperación es más eficiente que la competencia cuando el objetivo es el bien común.</p>
+        </div>
+
+        <div class="valor-item reveal" data-delay="2">
+          <div class="valor-item__num">06</div>
+          <svg class="valor-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <h3 class="valor-item__title">Rigor científico</h3>
+          <p class="valor-item__desc">Los datos abiertos solo tienen valor si el análisis es riguroso. Documentamos fuentes, metodologías y limitaciones. Preferimos publicar menos con más calidad que más con menos certeza.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section class="como">
+    <div class="container">
+      <div class="como__grid">
+        <div class="como__left reveal" data-delay="0">
+          <p class="section__eyebrow">Cómo trabajamos</p>
+          <h2 class="como__title">Infraestructura<br>colectiva para la<br><em>acción ciudadana</em></h2>
+          <p class="como__body">
+            Cada proyecto sigue el mismo ciclo: identificamos una fuente de datos pública relevante, construimos el pipeline de ingesta y procesamiento, publicamos los datos en nuestro lago abierto y desarrollamos una herramienta de visualización o análisis accesible a cualquier persona.
+          </p>
+          <p class="como__body">
+            Usamos una arquitectura <strong>Lakehouse + Medallón</strong> que garantiza la trazabilidad completa desde el dato crudo hasta el producto final. Bronze preserva los datos originales intactos. Silver los normaliza. Gold los convierte en herramientas.
+          </p>
+          <p class="como__body">
+            Todo el código se desarrolla en abierto en GitHub. Las contribuciones externas son bienvenidas. La documentación es parte del producto, no un añadido posterior.
+          </p>
+          <a href="/arquitectura-datos.html" class="btn btn--ghost" style="margin-top:1.5rem">
+            Ver arquitectura técnica
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="como__right reveal" data-delay="1">
+          <div class="como__principles">
+            <div class="como__principle">
+              <span class="como__principle-mark">→</span>
+              <div>
+                <div class="como__principle-title">Código siempre abierto</div>
+                <p class="como__principle-desc">Todo el software bajo licencia MIT desde el primer commit. Sin excepciones ni versiones privadas.</p>
+              </div>
+            </div>
+            <div class="como__principle">
+              <span class="como__principle-mark">→</span>
+              <div>
+                <div class="como__principle-title">Datos como infraestructura pública</div>
+                <p class="como__principle-desc">Los datasets procesados se publican bajo CC BY 4.0. Cualquiera puede descargarlos, analizarlos y reutilizarlos con atribución.</p>
+              </div>
+            </div>
+            <div class="como__principle">
+              <span class="como__principle-mark">→</span>
+              <div>
+                <div class="como__principle-title">Metodología documentada</div>
+                <p class="como__principle-desc">Cada transformación está descrita en código. Reproducibilidad total: cualquier resultado puede ser verificado desde cero.</p>
+              </div>
+            </div>
+            <div class="como__principle">
+              <span class="como__principle-mark">→</span>
+              <div>
+                <div class="como__principle-title">Gobernanza horizontal</div>
+                <p class="como__principle-desc">Decisiones colectivas. Cada nodo opera con autonomía plena dentro de los valores compartidos. No hay jerarquía de acceso al conocimiento.</p>
+              </div>
+            </div>
+            <div class="como__principle">
+              <span class="como__principle-mark">→</span>
+              <div>
+                <div class="como__principle-title">Infraestructura soberana</div>
+                <p class="como__principle-desc">Servidores europeos, software libre, sin dependencias de plataformas privadas para la infraestructura crítica.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENCIAS -->
+  <div class="licencias">
+    <div class="container">
+      <div class="licencias__inner">
+        <div class="licencias__text">
+          <strong>Guadal Open Source</strong> · Málaga, Andalucía, España<br>
+          Asociación en proceso de constitución · hola@guadalopensource.org
+        </div>
+        <div class="licencias__badges">
+          <span class="licencias__badge">MIT</span>
+          <span class="licencias__badge">CC BY 4.0</span>
+          <span class="licencias__badge">Open Data</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__left">
+      <strong>Guadal Open Source</strong><br>
+      Málaga, Andalucía, España<br>
+      Asociación en proceso de constitución<br>
+      MIT · CC BY 4.0
+    </div>
+    <div class="footer__center">
+      <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+        <rect x="140" y="40" width="400" height="400" rx="60" fill="#0F2340"/>
+        <path d="M180 220 Q230 180 280 220 Q330 260 380 220 Q430 180 480 220" fill="none" stroke="#2E6DA4" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="340" cy="168" r="16" fill="#0F6E56"/>
+        <circle cx="340" cy="168" r="7" fill="#1D9E75"/>
+        <text font-family="Georgia,serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" x="340" y="390" letter-spacing="6">GOS</text>
+      </svg>
+    </div>
+    <div class="footer__links">
+      <a href="https://github.com/guadalopensource" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:hola@guadalopensource.org">Email</a>
+      <a href="/nosotros.html">Nosotros</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

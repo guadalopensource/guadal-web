@@ -53,10 +53,11 @@
     </span>
   </a>
   <div class="navbar__links">
-    <a href="#ambitos"         class="navbar__link">Ámbitos</a>
-    <a href="#proyectos"       class="navbar__link">Proyectos</a>
-    <a href="#sobre-nosotros"  class="navbar__link">Nosotros</a>
-    <a href="#blog"            class="navbar__link">Publicaciones</a>
+    <a href="#ambitos"             class="navbar__link">Ámbitos</a>
+    <a href="#proyectos"           class="navbar__link">Proyectos</a>
+    <a href="/nosotros.html"       class="navbar__link">Nosotros</a>
+    <a href="#blog"                class="navbar__link">Publicaciones</a>
+    <a href="/arquitectura-datos.html" class="navbar__link">Arquitectura</a>
     <a href="https://github.com/guadalopensource" target="_blank" rel="noopener" class="navbar__cta">GitHub →</a>
   </div>
 </nav>
@@ -178,6 +179,16 @@
           <h3 class="project-card__title">Gemelo Digital de Cuenca</h3>
           <p class="project-card__desc">Primer modelo hidrológico abierto para una cuenca del sur de España. Basado en datos SNCZI.</p>
         </div>
+        <div class="project-card reveal" data-delay="1">
+          <div class="project-card__id">P7 <span class="project-card__status status--research">Investigación</span></div>
+          <h3 class="project-card__title">Análisis de Ondas Gravitacionales</h3>
+          <p class="project-card__desc">Pipeline de análisis científico sobre datos abiertos LIGO/Virgo/KAGRA. Filtro adaptado, estimación de parámetros y visualización de eventos como GW150914.</p>
+        </div>
+        <div class="project-card reveal" data-delay="2">
+          <div class="project-card__id">P8 <span class="project-card__status status--planned">Planificado</span></div>
+          <h3 class="project-card__title">Observatorio Pérdidas Red Eléctrica</h3>
+          <p class="project-card__desc">Cuantificación de pérdidas técnicas y curtailments en la red eléctrica española. ~24.000 GWh anuales que podrían alimentar industria y centros de datos.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -194,10 +205,7 @@
         <div class="about__sidebar reveal" data-delay="0">
           <p class="about__index">Guadal Open Source</p>
           <h2 class="about__title">Tecnología<br>al servicio del <em>bien común</em></h2>
-          <div class="nodos">
-            <div class="nodo"><div class="nodo__dot"></div>Nodo Málaga — Datos ambientales</div>
-            <div class="nodo"><div class="nodo__dot"></div>Nodo Viena — Energía y educación</div>
-          </div>
+
         </div>
         <div class="about__content reveal" data-delay="2">
           <p class="about__lead">Aplicamos ingeniería de datos e inteligencia artificial a los problemas que más importan, donde los datos abiertos pueden cambiar algo real.</p>
@@ -209,6 +217,10 @@
             <div class="valor reveal" data-delay="3"><h4 class="valor__title">Gobernanza colectiva</h4><p class="valor__desc">Decisiones horizontales. Cada nodo autónomo.</p></div>
             <div class="valor reveal" data-delay="4"><h4 class="valor__title">Impacto real</h4><p class="valor__desc">Herramientas para personas, no solo para instituciones.</p></div>
           </div>
+          <a href="/nosotros.html" class="btn btn--ghost" style="margin-top:2.5rem">
+            Conoce más sobre nosotros
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -266,7 +278,8 @@
       <div class="footer__links">
         <a href="https://github.com/guadalopensource" target="_blank" rel="noopener">GitHub</a>
         <a href="mailto:hola@guadalopensource.org">Email</a>
-        <a href="#sobre-nosotros">Licencia</a>
+        <a href="/nosotros.html">Nosotros</a>
+        <a href="/arquitectura-datos.html">Arquitectura</a>
       </div>
     </div>
   </footer>
